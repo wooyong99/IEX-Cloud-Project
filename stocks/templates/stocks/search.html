@@ -1,6 +1,30 @@
 {% extends 'stocks/base.html' %}
 
 {% block content %}
-{{stock}}
-
-{% endblock %}g
+<div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Symbol</th>
+          <th scope="col">Company Name</th>
+          <th scope="col">primary Exchange</th>
+          <th scope="col">latestPrice</th>
+          <th scope="col">latestTime</th>
+            <th scope="col">week 52High</th>
+            <th scope="col">week 52Low</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">{{ stock.symbol }}</th>
+          <td>{{ stock.companyName }}</td>
+          <td>{{ stock.primaryExchange }}</td>
+          <td>{{ stock.latestPrice }}</td>
+            <td>{{ stock.latestTime }}</td>
+            <td>{{ stock.week52High }}</td>
+            <td>{{ stock.week52Low }}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+{% endblock %}
