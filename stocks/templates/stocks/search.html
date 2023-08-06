@@ -1,7 +1,8 @@
 {% extends 'stocks/base.html' %}
 
 {% block content %}
-<div class="container">
+<div class="container mt-5">
+  <h1 class="d-flex justify-content-center">Search Result : {{ stock.companyName }}</h1>
     <table class="table">
       <thead>
         <tr>
@@ -27,4 +28,28 @@
       </tbody>
     </table>
 </div>
+<div class="container mt-5 mb-3">
+  <h1 class="d-flex justify-content-center">Related News</h1>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for new in news %}
+        <div class="col">
+        <div class="card mb-3" style="max-width: 540px;">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src='{{ new.image }}' class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title card-subject"><a href="{{ new.url }}">{{ new.headline}}</a></h5>
+                <p class="card-text card-summary">{{ new.summary }}</p>
+                <p class="card-text"><small class="text-muted">{{ new.provider }}</small></p>
+                  <p class="card-text"><small class="text-muted">{{ new.datetime }}</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        {% endfor %}
+    </div>
+    </div>
 {% endblock %}

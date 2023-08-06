@@ -19,12 +19,12 @@ def search(request):
         stock_api = requests.get("https://api.iex.cloud/v1/data/core/quote/{0}?token=pk_8d7f88195da14dc396d5f8a2521a0624".format(word))
         stock = json.loads(stock_api.content)[0]
 
+        news_api = requests.get("https://api.iex.cloud/v1/data/core/news/{0}?limit=6&token=pk_8d7f88195da14dc396d5f8a2521a0624".format(word))
+        news = json.loads(news_api.content)
     except Exception as e:
         stock = ""
 
-    print(type(stock))
-    print("---")
-    content = {'stock': stock}
+    content = {'stock': stock, 'news' : news}
 
 
     return render(request, "stocks/search.html", content)
