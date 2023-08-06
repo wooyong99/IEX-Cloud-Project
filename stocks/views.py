@@ -5,10 +5,10 @@ import json
 
 def home(request):
 
-    stock_api = requests.get("https://api.iex.cloud/v1/data/core/quote/goog?token=pk_8d7f88195da14dc396d5f8a2521a0624")
-    stock = json.loads(stock_api.content)
+    news_api = requests.get("https://api.iex.cloud/v1/data/CORE/NEWS?last=5&token=pk_8d7f88195da14dc396d5f8a2521a0624")
+    news = json.loads(news_api.content)
 
-    content = {'stock': stock}
+    content = {'news': news}
 
     return render(request, 'stocks/home.html', content)
 
@@ -18,9 +18,13 @@ def search(request):
 
         stock_api = requests.get("https://api.iex.cloud/v1/data/core/quote/{0}?token=pk_8d7f88195da14dc396d5f8a2521a0624".format(word))
         stock = json.loads(stock_api.content)[0]
+
     except Exception as e:
         stock = ""
 
+    print(type(stock))
+    print("---")
     content = {'stock': stock}
+
 
     return render(request, "stocks/search.html", content)
