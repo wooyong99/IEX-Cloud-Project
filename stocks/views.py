@@ -13,10 +13,15 @@ def home(request):
     return render(request, 'stocks/home.html', content)
 
 def search(request):
-    word = request.GET.get('word')
-    stock_api = requests.get("https://api.iex.cloud/v1/data/core/quote/{0}?token=pk_8d7f88195da14dc396d5f8a2521a0624".format(word[:4]))
+    try:
+        word = request.GET.get('word')[:4]
 
-    stock = json.loads(stock_api.content)
+        stock_api = requests.get("https://api.iex.cloud/v1/data/core/quote/{0}?token=pk_8d7f88195da14dc396d5f8a2521a0624".format(word))
+
+        stock = json.loads(stock_api.content)
+    except Exception as e:
+        stock = ""
 
     content = {'stock' : stock}
+
     return render(request, "stocks/search.html", content)
