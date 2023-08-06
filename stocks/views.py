@@ -5,7 +5,7 @@ import json
 
 def home(request):
 
-    news_api = requests.get("https://api.iex.cloud/v1/data/CORE/NEWS?last=5&token=pk_8d7f88195da14dc396d5f8a2521a0624")
+    news_api = requests.get("https://api.iex.cloud/v1/data/CORE/NEWS?last=15&token=pk_8d7f88195da14dc396d5f8a2521a0624")
     news = json.loads(news_api.content)
 
     content = {'news': news}
